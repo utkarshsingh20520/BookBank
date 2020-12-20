@@ -1,0 +1,60 @@
+{% extends "blog/base.html" %}
+
+
+{% block css %}
+
+.profile
+{
+width: 100%;
+height: 400px;
+padding-top: 200px;
+
+}
+.profile h1{
+   font-size:50px;
+   font-weight: 800;
+   letter-spacing: 5px;
+   text-align: center;
+   font-family: 'Ranchers', cursive;
+   color: white;
+
+}
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid bg-primary profile ">
+  <h1>Write A Blog</h1>
+</div>
+<div class="container">
+<div class="row py-5 my-5">
+
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 bg-primary">
+
+
+    </div>
+
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 p-5">
+       <div class="content-section">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form_group">
+            <legend class="border_bottom mb-4">Delete a post</legend>
+            <h2>Are you sure you want to delete the post ("{{ object.title }}" )</h2>
+        </fieldset>
+        <div class="form_group">
+            <button class="btn btn-outline-danger" type="submit">Delete</button>
+            <a class="btn btn-outline-secondary" href="{ % url 'post-detail' object.id %}" >Cancel</a>
+        </div>
+    </form>
+
+</div>
+</div>
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}

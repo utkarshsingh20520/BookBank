@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+{% block css %}
+ .loggedout{
+margin: auto;
+border: 2px solid black;
+margin-top: 200px;
+}
+{% endblock %}
+
+{% block content %}
+<div class="container loggedout">
+<h2 class="my-5">Logged Out</h2>
+<div class="border_top pt-3">
+        <small class="text_muted">
+            <a class="ml-2" href="{% url 'login' %}">Log in again</a>
+        </small>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,139 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block css %}
+
+.profile
+{
+width: 100%;
+height: 500px;
+padding-top: 200px;
+
+}
+.profile h2{
+   font-size:50px;
+   font-weight: 800;
+   letter-spacing: 5px;
+   text-align: center;
+   color: white;
+
+}
+.profile h3{
+   font-size:30px;
+   font-weight: 800;
+   letter-spacing: 5px;
+   text-align: center;
+   color: white;
+
+}
+.profile p{
+   font-size:15px;
+   font-weight: 800;
+   letter-spacing: 5px;
+   text-align: center;
+   color: white;
+
+}
+
+.content{
+   font-size:25px;
+   font-weight: 800;
+   letter-spacing: 5px;
+   text-align: center;
+   color: blue;
+
+}
+.contents{
+  margin-top: 7px;
+  margin-bottom: 8px;
+}
+
+.contents p{
+   font-size:15px;
+   letter-spacing: 5px;
+   text-align: center;
+   color: blue;
+}
+
+.heads{
+  font-weight:bold;
+  font-size: 25px;
+  color: black;
+
+}
+.contnts{
+  font-weight:bold;
+  font-size: 15px;
+  color: black;
+}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid bg-dark profile ">
+  <h2 class="post-title">{{ object.title }}</h2><br>
+    <h3 class="post-subtitle">{{ object.subtitle }}</h3>
+    <hr style="height:2px; width:50%; color: black;">
+    <p class="post-subtitle">Posted by
+            <a href="#" style="text-decoration: none; color:white;">{{ object.author }}</a>
+            on {{ object.date_posted }}</p>
+
+
+
+</div>
+
+<div class="contents container my-4">
+    <div class="row my-4">
+    <div class="col-lg-3 col-md-3 text-center heads">
+        Contents
+        </div>
+    <div class="col-lg-9 ">
+        <p class="contnts">{{ object.content }}</p>
+    </div>
+    </div>
+    <div class="row my-4">
+    <div class="col-lg-3 col-md-3 text-center heads">
+        Writer
+        </div>
+    <div class="col-lg-9 ">
+        <p class="contnts">{{ object.writer }}</p>
+    </div>
+    </div>
+    <div class="row my-4">
+    <div class="col-lg-3 col-md-3 text-center heads">
+        Book Id
+        </div>
+    <div class="col-lg-9 ">
+        <p class="contnts">{{ object.book_id }}</p>
+    </div>
+    </div>
+    <div class="row my-4">
+    <div class="col-lg-3 col-md-3 text-center heads">
+        Price
+        </div>
+    <div class="col-lg-9 ">
+        <p class="contnts">{{ object.price }}</p>
+    </div>
+    </div>
+
+
+
+
+    <hr style="width: 60%; height: 2px;">
+    <p class="post-meta">Posted by
+            <a href="{% url 'user-posts' book.author.username %}" >{{ object.author }}</a>
+            on {{object.date_posted}}</p>
+</div>
+
+    {% if object.author == user %}
+    <div class="container row text-center" >
+       <a class="btn btn-secondary btn-lg mt-2 mb-1 mx-5 col-lg-3 ml-auto float-right" href="{% url 'post-update' object.title %}">Update</a>
+       <a class="btn btn-danger btn-lg mt-2 mb-1 mx-5 col-lg-3 ml-auto float-right"  href="{% url 'post-delete' object.title %}">Delete</a>
+
+    </div>
+    {% endif %}
+
+
+
+{% endblock %}

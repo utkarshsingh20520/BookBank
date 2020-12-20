@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ranchers&family=Sora:wght@700&display=swap" rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+   {% if title %}
+      <title> Django vlog - {{title}}</title>
+      {% else %}
+      <title> Django Vlogs</title>
+      {% endif %}
+  </head>
+  <style>
+      .navbar{
+      background-color:rgba(0,0,0,.2)
+    }
+
+    .navbar-brand{
+    font-size: 35px;
+    font-weight: 800;
+    color: #211bc4;
+    word-spacing: 4px;
+    letter-spacing: 2px;
+
+  }
+  .navbar-toggler{
+    border: 4px  solid black;
+    border-color: black;
+
+  }
+  .nav-item{
+    text-align: center;
+    font-size: 20px;
+    color: #211bc4;
+    letter-spacing: 2px;
+
+
+  }
+  .footer1{
+padding: 0;
+height: 150px;
+padding-top:30px;
+justify-content:center;
+margin-top:50px;
+background-color: (0,0,0,0.8);
+}
+
+
+
+      {% block css %}{% endblock %}
+  </style>
+  <body>
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{message.tags}} my-2">
+      {{message}}
+  </div>
+  {% endfor %}
+  {% endif %}
+  <div class="container-fluid my-1">
+    <header >
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar ">
+      <div class="container">
+  <a class="navbar-brand" href="#">BOOK BANK</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto ">
+      {% if user.is_authenticated %}
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'blog-home' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blog-about' %}">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'post-create' %}">Create</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+      </li>
+
+
+      {% else %}
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'blog-home' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blog-about' %}">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'register' %}">Register</a>
+      </li>
+     {% endif %}
+
+    </ul>
+
+  </div>
+</div>
+</nav>
+</header>
+  </div>
+    {% block content %}
+
+    {% endblock %}
+
+  <footer>
+    <div class="container-fluid" style=" background-color:rgba(0,0,0,.4);">
+      <div class="row footer1 ">
+
+        <div class="col-lg-12 col-md-12  ">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+        </div>
+        <div class="col-lg-12 col-md-12  ">
+          <p class="copyright text-muted" style="font-size:20px; font-weight: 800; font-family: 'Sora', sans-serif; text-align:center;color:black;">Copyright &copy; BOOK BANK</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  </body>
+</html>
+
